@@ -10,7 +10,7 @@ def main():
     
     # Launch Streamlit process
     streamlit_cmd = [
-        sys.executable, "-m", "streamlit", "run", "frontend/streamlit_app.py",
+        sys.executable, "-m", "streamlit", "run", "frontend/test_dashboard.py",
         "--server.port=8501", "--server.address=0.0.0.0"
     ]
     streamlit_process = subprocess.Popen(streamlit_cmd)

@@ -220,7 +220,7 @@ decision) with **Gemini** used for embeddings only.
 
 **Already built pre-session:** RAG pipeline (`app/rag/`), LangGraph-based Research Copilot
 (`app/agents/`, `app/services/chat_service.py`), document upload/ingestion, web search + URL
-reader tools (bonus, beyond plan scope), Streamlit frontend.
+reader tools (bonus, beyond plan scope), a minimal Streamlit frontend (later removed — see below).
 
 **Built this session (on top of the above):**
 - Prompt library (`app/prompts/library/**`) + Jinja2 loader + medical disclaimer guardrail
@@ -241,8 +241,8 @@ reader tools (bonus, beyond plan scope), Streamlit frontend.
   Initially miscategorized as "stretch" in this plan's first draft; the Team Structure PDF lists
   Knowledge Graph as one of AI Developer 1's explicit core responsibilities, so it was built, not cut.
 - Fixed a pre-existing gap in `requirements.txt` (`langchain-chroma` was imported by
-  `app/rag/vectorstore.py` but never listed) and a stale path in `run.py` (pointed at a
-  nonexistent `app/ui/app.py` instead of `frontend/streamlit_app.py`)
+  `app/rag/vectorstore.py` but never listed) and a stale path in `run.py` (originally pointed at a
+  nonexistent `app/ui/app.py`)
 - Statistical Analysis Assistant: `app/services/statistics_service.py` computes real descriptive
   stats/correlations/outliers/hormonal-biomarker detection from an uploaded CSV via pandas →
   `/statistics/analyze` (pure stats, no LLM) and `/statistics/analyze/full` (stats + AI narrative,
@@ -260,7 +260,20 @@ education Q&A, evidence summarizer, report generation, the original chat endpoin
 extract/entity/ask, and both statistics endpoints (tested with a real CSV upload). 27/27 pytest
 unit tests also pass.
 
-**Still open:** frontend wiring for the new endpoints (Streamlit UI currently only calls `/chat`
-and `/documents/upload` — not core to AI Developer 1's role, but useful for demos). The
-`DatasetSummary` contract is still this session's best-guess shape — reconcile it with AI
-Developer 2 once their pipeline exists, since they'll be building on top of what's here.
+## Frontend cleanup + test dashboard
+
+The pre-existing minimal Streamlit frontend (`frontend/streamlit_app.py`,
+`frontend/components/{chat,sidebar,sources}.py`) only called `/chat` and `/documents/upload` — it
+had no idea about any of the 15+ endpoints built this session, and wasn't AI Developer 1's
+responsibility anyway (that's the Full Stack Developer's Next.js build, per the Team Structure
+PDF). It was removed entirely to avoid confusion.
+
+In its place: **`frontend/test_dashboard.py`** — a single-file, 13-tab Streamlit dashboard
+covering every endpoint (Chat, Upload, Literature, Summarize, Citations, Semantic Search, Reports,
+Dataset Analysis, Statistics, Evidence, Tutor, Education, Knowledge Graph). Verified with
+Streamlit's headless `AppTest` harness — zero exceptions, all tabs render. This is a testing tool,
+not a production frontend. `run.py` was updated to launch this instead of the removed file, so
+`python run.py` still starts backend + a UI together.
+
+**Still open:** the `DatasetSummary` contract is still this session's best-guess shape — reconcile
+it with AI Developer 2 once their pipeline exists, since they'll be building on top of what's here.
