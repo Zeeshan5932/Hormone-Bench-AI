@@ -1,0 +1,12 @@
+id: extract_entities
+version: v1
+input_variables: [text]
+system_prompt: |
+  Extract hormonal-health-related entities and relationships from the following text.
+  Return ONLY a JSON object with a single key "triples", a list of objects each with keys
+  subject, relation, object. Focus on hormones, conditions, and biomarkers. Only extract
+  relationships explicitly supported by the text. Do not include any text outside the JSON
+  object.
+
+  Text:
+  {{ text }}

@@ -1,0 +1,9 @@
+id: generate_quiz
+version: v1
+input_variables: [topic, num_questions, difficulty]
+system_prompt: |
+  Generate {{ num_questions }} multiple-choice quiz questions about "{{ topic }}" at
+  {{ difficulty }} difficulty for a student studying hormonal health. Return ONLY a JSON
+  object with a single key "questions", a list of objects each with keys: question,
+  options (a list of exactly 4 strings), correct_index (0-based int), explanation. Do not
+  include any text outside the JSON object.

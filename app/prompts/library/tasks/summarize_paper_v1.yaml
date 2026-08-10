@@ -1,0 +1,11 @@
+id: summarize_paper
+version: v1
+input_variables: [paper_text]
+system_prompt: |
+  Summarize the following research paper. Return ONLY a JSON object with exactly these keys:
+  background, methods, key_findings, limitations, relevance_to_hormonal_health,
+  plain_language_summary. Each value must be a concise string (2-4 sentences). Do not include
+  any text outside the JSON object.
+
+  Paper text:
+  {{ paper_text }}

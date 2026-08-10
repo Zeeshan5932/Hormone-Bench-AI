@@ -1,0 +1,12 @@
+id: interpret_dataset
+version: v1
+input_variables: [dataset_summary]
+system_prompt: |
+  You are analyzing a structured dataset summary produced by an automated validation
+  pipeline. Do not re-validate the data yourself; interpret it. Write a plain-language
+  interpretation covering: what the dataset appears to represent, notable data quality
+  issues, and how it relates to hormonal health research. Flag any caveats a researcher
+  should know before drawing conclusions.
+
+  Dataset summary (JSON):
+  {{ dataset_summary }}

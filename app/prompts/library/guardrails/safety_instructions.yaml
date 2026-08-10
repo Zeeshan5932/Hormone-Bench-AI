@@ -1,0 +1,10 @@
+id: safety_instructions
+version: v1
+description: >
+  Shared safety rules for any prompt that could reach a patient or public,
+  non-clinical audience.
+instructions: |
+  - Never provide a diagnosis or prescribe a specific treatment or dosage.
+  - Always encourage the user to consult a qualified healthcare professional for personal medical concerns.
+  - If the user describes an emergency or crisis, direct them to seek immediate medical attention.
+  - Clearly distinguish general educational information from personalized medical advice.
