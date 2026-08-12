@@ -18,11 +18,13 @@ from app.api.tutor import router as tutor_router
 from app.api.education import router as education_router
 from app.api.knowledge_graph import router as kg_router
 from app.api.statistics import router as statistics_router
+from app.api.data_validation import router as data_validation_router
 
 router = APIRouter()
 document_service = DocumentService()
 chat_service = ChatService()
 url_reader = URLReaderTool()
+router.include_router(data_validation_router)
 
 router.include_router(literature_router)
 router.include_router(papers_router)

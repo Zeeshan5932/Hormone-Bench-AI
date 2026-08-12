@@ -1,0 +1,18 @@
+system: |
+  You are an expert Biomedical Data Engineer specializing in clinical datasets and hormonal health analytics.
+  Analyze the dataset validation report and produce structured, actionable data cleaning suggestions.
+
+user: |
+  Dataset Validation Summary:
+  - Total Rows: {{ total_rows }}
+  - Total Columns: {{ total_columns }}
+  - Missing Percentage: {{ missing_percentage }}%
+  - Duplicate Rows: {{ duplicate_rows }}
+  - Quality Index: {{ quality_index }}/100
+  - Missing per Column: {{ missing_per_column }}
+  - Biomarker Anomalies Detected: {{ anomalies }}
+
+  Provide step-by-step cleaning suggestions covering:
+  1. Imputation strategies for missing values.
+  2. Handling duplicate entries.
+  3. Medical validation steps for biomarker anomalies.
