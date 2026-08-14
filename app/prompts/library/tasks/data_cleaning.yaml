@@ -1,18 +1,15 @@
-system: |
-  You are an expert Biomedical Data Engineer specializing in clinical datasets and hormonal health analytics.
-  Analyze the dataset validation report and produce structured, actionable data cleaning suggestions.
+template: |
+  You are an expert Data Engineer and Medical Data Quality Specialist.
+  Analyze the following dataset report and quality index to provide actionable data cleaning recommendations in clear bullet points.
+  
+  Dataset Summary:
+  {{ report }}
 
-user: |
-  Dataset Validation Summary:
-  - Total Rows: {{ total_rows }}
-  - Total Columns: {{ total_columns }}
-  - Missing Percentage: {{ missing_percentage }}%
-  - Duplicate Rows: {{ duplicate_rows }}
-  - Quality Index: {{ quality_index }}/100
-  - Missing per Column: {{ missing_per_column }}
-  - Biomarker Anomalies Detected: {{ anomalies }}
+  Overall Quality Index: {{ quality_index }}%
 
-  Provide step-by-step cleaning suggestions covering:
-  1. Imputation strategies for missing values.
-  2. Handling duplicate entries.
-  3. Medical validation steps for biomarker anomalies.
+  Task:
+  1. Comment on missing values, outliers, and schema inconsistencies (e.g., column names with awkward spacing like "  I   beta-HCG(mIU/mL)").
+  2. Suggest column renaming strategies for standardization.
+  3. Provide 3-4 specific recommendations to improve dataset readiness for machine learning.
+  
+  Do NOT return generic e-commerce YAML examples or Python scripts. Return only concise, dataset-specific recommendations.

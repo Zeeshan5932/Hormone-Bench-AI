@@ -6,6 +6,7 @@ Run with:  streamlit run frontend/test_dashboard.py
 """
 
 import json
+import mimetypes
 import requests
 import streamlit as st
 
@@ -354,33 +355,33 @@ with tabs[12]:
 # --- Data Engineering (Role 2) ---
 with tabs[13]:
     st.subheader("🧬 Biomedical Data Engineering & Quality Engine (Role 2)")
-    st.caption("Upload multiple CSV datasets for schema matching, automatic merging, missing value detection, benchmark indexing, and AI cleaning recommendations.")
+    st.caption("Upload multiple CSV or Excel datasets for schema matching, automatic merging, missing value detection, benchmark indexing, and AI cleaning recommendations.")
 
     role2_files = st.file_uploader(
-        "Upload one or more CSV files", 
-        type=["csv"], 
+        "Upload one or more CSV or Excel files", 
+        type=["csv", "xlsx", "xls"],  # Updated to support Excel files
         accept_multiple_files=True, 
         key="role2_csv_upload"
     )
 
     if st.button("Process & Validate Datasets", key="role2_process_btn"):
         if not role2_files:
-            st.warning("Please upload at least one CSV dataset.")
+            st.warning("Please upload at least one dataset file (CSV or Excel).")
         else:
             with st.spinner("Merging datasets, running schema checks, calculating metrics & generating suggestions..."):
                 try:
-                    files_payload = [
-                        ("files", (f.name, f.getvalue(), "text/csv")) 
-                        for f in role2_files
-                    ]
+                    files_payload = []
+                    for f in role2_files:
+                        content_type = f.type or mimetypes.guess_type(f.name)[0] or "application/octet-stream"
+                        files_payload.append(("files", (f.name, f.getvalue(), content_type)))
                     
                     r = requests.post(f"{API}/dataset/process-and-validate", files=files_payload, timeout=120)
                     
                     if r.status_code == 200:
                         data = r.json()
-                        report = data.get("validation_report", {})
-                        benchmark = data.get("quality_benchmark", {})
-                        suggestions = data.get("cleaning_suggestions", "")
+                        report = data.get("summary") or data.get("validation_report", {})
+                        benchmark = data.get("benchmark") or data.get("quality_benchmark", {})
+                        suggestions = data.get("recommendations") or data.get("cleaning_suggestions", "")
 
                         st.success("Processing complete!")
 
