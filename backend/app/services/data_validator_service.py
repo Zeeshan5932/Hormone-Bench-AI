@@ -1,7 +1,7 @@
 import pandas as pd
 from typing import List, Dict, Tuple, Any
-from app.schemas.dataset import DatasetValidationReport
-from app.services.schema_matcher import SchemaMatcher
+from backend.app.schemas.dataset import DatasetValidationReport
+from backend.app.services.schema_matcher import SchemaMatcher
 
 BIOMARKER_BOUNDS = {
     "fsh": (0.0, 200.0),

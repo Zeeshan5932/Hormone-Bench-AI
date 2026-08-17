@@ -1,6 +1,6 @@
 import os
 import google.generativeai as genai
-from app.config import settings
+from backend.app.config import settings
 
 # Configure Gemini API Key
 genai.configure(api_key=getattr(settings, "GOOGLE_API_KEY", os.getenv("GOOGLE_API_KEY")))

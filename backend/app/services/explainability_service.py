@@ -3,9 +3,9 @@ import re
 from pathlib import Path
 from typing import Any, Dict, List
 
-from app.config import settings
-from app.prompts.loader import render_prompt
-from app.services.gemini_client import generate_response
+from backend.app.config import settings
+from backend.app.prompts.loader import render_prompt
+from backend.app.services.gemini_client import generate_response
 
 
 PROMPT_FILE = Path(settings.PROMPT_LIBRARY_DIR) / "tasks" / "data_cleaning.yaml"

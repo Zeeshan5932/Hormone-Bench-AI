@@ -1,6 +1,7 @@
 import pandas as pd
 from typing import Union
-from app.schemas.dataset import QualityBenchmark, DatasetValidationReport
+
+from backend.app.schemas.dataset import QualityBenchmark, DatasetValidationReport
 
 class BenchmarkService:
 

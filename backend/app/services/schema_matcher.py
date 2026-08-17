@@ -1,6 +1,6 @@
 from rapidfuzz import process, fuzz
 from typing import List, Dict
-from app.schemas.dataset import ColumnSchemaMatch
+from backend.app.schemas.dataset import ColumnSchemaMatch
 
 class SchemaMatcher:
     def __init__(self, threshold: float = 75.0):

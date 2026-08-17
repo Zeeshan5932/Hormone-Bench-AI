@@ -5,9 +5,9 @@ import pandas as pd
 from typing import List
 from fastapi import APIRouter, UploadFile, File, HTTPException
 
-from app.services.data_validator_service import DataValidatorService
-from app.services.benchmark_service import BenchmarkService
-from app.services.explainability_service import ExplainabilityService
+from backend.app.services.data_validator_service import DataValidatorService
+from backend.app.services.benchmark_service import BenchmarkService
+from backend.app.services.explainability_service import ExplainabilityService
 
 router = APIRouter()
 
