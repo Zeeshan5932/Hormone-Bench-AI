@@ -18,6 +18,7 @@ from backend.app.api.tutor import router as tutor_router
 from backend.app.api.education import router as education_router
 from backend.app.api.knowledge_graph import router as kg_router
 from backend.app.api.statistics import router as statistics_router
+from backend.app.api.data_validation import router as data_validation_router
 
 router = APIRouter()
 document_service = DocumentService()
