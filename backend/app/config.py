@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     SEMANTIC_SCHOLAR_API_KEY: Optional[str] = None
 
     # Model Specifications
-    LLM_MODEL: str = "llama-3.3-70b-versatile"
+    LLM_MODEL: str = "GPT OSS 120B"
     EMBEDDING_MODEL: str = "gemini-embedding-001"
     MAX_TOKENS: int = 2048
     # Application Parameters
